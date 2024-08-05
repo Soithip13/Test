@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัดวิชาคณิตศาสตร์ (ค22101): การหารเลขยกกำลัง</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+        h1 { text-align: center; }
+        .question { margin-bottom: 15px; }
+        input[type="text"] { width: 200px; padding: 5px; }
+        button { padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        #result { font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>แบบฝึกหัดวิชาคณิตศาสตร์ (ค22101): การหารเลขยกกำลังเมื่อเลขชี้กำลังเป็นจำนวนเต็มบวก</h1>
+    <p>ชื่อนักเรียน: <input type="text" id="studentName"></p>
+    <div id="quiz"></div>
+    <button onclick="checkAnswers()">ตรวจคำตอบ</button>
+    <div id="result"></div>
+
+    <script>
+        const questions = [
+            { q: "8⁴ ÷ 8²", a: "แปดยกกำลังสอง" },
+            { q: "3⁵ ÷ 3³", a: "สามยกกำลังสอง" },
+            { q: "5⁶ ÷ 5²", a: "ห้ายกกำลังสี่" },
+            { q: "2⁷ ÷ 2⁴", a: "สองยกกำลังสาม" },
+            { q: "7⁵ ÷ 7³", a: "เจ็ดยกกำลังสอง" },
+            { q: "4⁶ ÷ 4²", a: "สี่ยกกำลังสี่" },
+            { q: "9⁴ ÷ 9²", a: "เก้ายกกำลังสอง" },
+            { q: "6⁵ ÷ 6³", a: "หกยกกำลังสอง" },
+            { q: "10⁶ ÷ 10⁴", a: "สิบยกกำลังสอง" },
+            { q: "2⁸ ÷ 2³", a: "สองยกกำลังห้า" },
+            { q: "3⁷ ÷ 3⁴", a: "สามยกกำลังสาม" },
+            { q: "5⁵ ÷ 5²", a: "ห้ายกกำลังสาม" },
+            { q: "7⁶ ÷ 7³", a: "เจ็ดยกกำลังสาม" },
+            { q: "4⁵ ÷ 4²", a: "สี่ยกกำลังสาม" },
+            { q: "8⁶ ÷ 8⁴", a: "แปดยกกำลังสอง" },
+            { q: "9⁵ ÷ 9³", a: "เก้ายกกำลังสอง" },
+            { q: "2⁹ ÷ 2⁶", a: "สองยกกำลังสาม" },
+            { q: "6⁷ ÷ 6⁴", a: "หกยกกำลังสาม" },
+            { q: "10⁵ ÷ 10³", a: "สิบยกกำลังสอง" },
+            { q: "3⁸ ÷ 3⁵", a: "สามยกกำลังสาม" }
+        ];
+
+        function generateQuiz() {
+            const quizContainer = document.getElementById('quiz');
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <p>${index + 1}. ${q.q} = <input type="text" id="q${index}" placeholder="ตอบเป็นตัวหนังสือ"></p>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            questions.forEach((q, index) => {
+                const userAnswer = document.getElementById(`q${index}`).value.trim().toLowerCase();
+                if (userAnswer === q.a.toLowerCase()) {
+                    score++;
+                }
+            });
+            const studentName = document.getElementById('studentName').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `คะแนนของ ${studentName}: ${score} / 20`;
+        }
+
+        generateQuiz();
+    </script>
+</body>
+</html>
